@@ -6,30 +6,32 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.mtg.gestion.cardsrepo.CardsRepository;
 import fr.mtg.gestion.entities.Cards;
+import fr.mtg.gestion.services.CardService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class RestCtrl {
 
-	private final CardsRepository cardsRepo;
+	private final CardService cardService;
 
-	public RestCtrl(CardsRepository cardsRepo) {
+	public RestCtrl(CardService cardService) {
 		super();
-		this.cardsRepo = cardsRepo;
+		this.cardService = cardService;
 	}
 	
 	@GetMapping("/cards")
 	public List<Cards> getCards() {
-		return (List<Cards>) cardsRepo.findAll();
+		return (List<Cards>) cardService.findAll();
 		}
 	
 	@PostMapping("/cards")
 	void addCard(@RequestBody Cards card) {
-		cardsRepo.save(card);
+		cardService.addCard(card);
 	}
 	
 }
