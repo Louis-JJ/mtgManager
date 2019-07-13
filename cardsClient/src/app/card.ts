@@ -1,12 +1,13 @@
-export class Cards {
+export class Card {
     id: string;
-    name: string;
-    mana_cost: string;
+	mtgId: String;
+    nameFr: string;
+	nameEn: string;
+    cmc: string;
     type: string;
     text: string;
     rarity: string;
     power: string;
     toughness: string;
     colors: string;
-    number: string;
 }

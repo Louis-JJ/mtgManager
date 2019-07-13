@@ -12,8 +12,10 @@ import fr.mtg.gestion.entities.nodes.User;
 @RelationshipEntity(type = "OWN")
 public class OwnCard {
 	
-	@Id @GeneratedValue private Long id;
-	private short number;
+	@Id @GeneratedValue 
+	private Long id;
+	
+	private long number;
 	
 	@StartNode
 	private User user;
@@ -21,7 +23,7 @@ public class OwnCard {
 	@EndNode
 	private Card card;
 	
-	public OwnCard(User user, Card card, short number) {
+	public OwnCard(User user, Card card, long number) {
 		this.user = user;
 		this.card = card;
 		this.number = number;
@@ -31,11 +33,11 @@ public class OwnCard {
 		return id;
 	}
 
-	public short getNumber() {
+	public long getNumber() {
 		return number;
 	}
 	
-	public void setNumber(short number) {
+	public void setNumber(long number) {
 		this.number = number;
 	}
 

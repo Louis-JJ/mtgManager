@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cards } from '../cards';
+import { Card } from '../card';
 import { CardsService } from '../cards.service';
 
 @Component({
@@ -9,14 +9,33 @@ import { CardsService } from '../cards.service';
 })
 export class CardsListComponent implements OnInit {
 
-  cards: Cards[];
+  cards: Card[];
 
   constructor(private cardsService: CardsService) { }
 
   ngOnInit() {
-    this.cardsService.findAll().subscribe(data => {
-      this.cards = data;
-    });
+	  
+	  if(this.asUser()) {
+		  this.cardsService.findAllUserCards(this.getUser().id.toString()).subscribe(data => {
+		      this.cards = data.map(dict => {
+		    	  let card = dict["card"];
+		    	  card.number = dict["own.number"];
+		    	  return card;
+		      });
+		    });
+	  } else {
+		  this.cardsService.findAll().subscribe(data => {
+		      this.cards = data;
+		    });
+	  }
+  }
+  
+  asUser() {
+	  return sessionStorage && sessionStorage.getItem('mtgUser');
+  }
+  
+  getUser() {
+	  return JSON.parse(sessionStorage.getItem('mtgUser'));
   }
 
 }

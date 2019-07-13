@@ -24,6 +24,10 @@ public class User {
 	
 	@Relationship(type = "USE")
 	private List<UseDeck> decks;
+	
+	public User(String pseudo) {
+		this.pseudo = pseudo;
+	}
 
 	public Long getId() {
 		return id;

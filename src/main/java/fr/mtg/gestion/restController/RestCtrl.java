@@ -1,47 +1,62 @@
 package fr.mtg.gestion.restController;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.mtg.gestion.entities.nodes.Card;
-import fr.mtg.gestion.repositories.CardRepository;
+import fr.mtg.gestion.entities.nodes.User;
+import fr.mtg.gestion.entities.requests.UserCardRequest;
 import fr.mtg.gestion.services.CardService;
+import fr.mtg.gestion.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class RestCtrl {
 
-	private final CardService mtgService;
+	private final UserService userService;
+	private final CardService cardService;
 
-	public RestCtrl(CardService mtgService) {
+	public RestCtrl(UserService userService, CardService cardService) {
 		super();
-		this.mtgService = mtgService;
+		this.userService = userService;
+		this.cardService = cardService;
+	}
+	
+	@PostMapping("/signin")
+	public User signIn(@RequestBody String pseudo) {
+		return userService.signIn(pseudo);
+	}
+	
+	@PostMapping("/login")
+	public User logIn(@RequestBody String pseudo) {
+		return userService.logIn(pseudo);
 	}
 	
 	@GetMapping("/cards")
 	public List<Card> getCards() {
-		return (List<Card>) mtgService.findAllCards();
+		return (List<Card>) cardService.findAllCards();
 	}
 	
 	@PostMapping("/addcard")
 	void addCard(@RequestBody Card card) {
-		mtgService.addCard(card);
+		cardService.addCard(card);
 	}
 	
 	@GetMapping("/usercards")
-	public List<Card> getUserCards(@RequestBody Long userId) {
-		return (List<Card>) mtgService.findUserCards(userId);
+	public Iterable<Map<String,Object>> getUserCards(@RequestParam Long userId) {
+		return cardService.findUserCards(userId);
 	}
 	
 	@PostMapping("/addusercard")
-	void addCard(@RequestBody Long userId, @RequestBody Card card, @RequestBody short number) {
-		mtgService.addUserCard(userId, card, number);
+	void addCard(@RequestBody UserCardRequest request) {
+		cardService.addUserCard(request.getUserId(), request.getCard(), request.getNumber());
 	}
 	
 }

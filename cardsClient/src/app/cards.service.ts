@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Cards } from './cards';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Card } from './card';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,17 +8,34 @@ import { Observable } from 'rxjs';
 })
 export class CardsService {
 
-  private cardsUrl: string;
+  private backendUrl: string;
 
   constructor(private http: HttpClient) {
-    this.cardsUrl = 'http://localhost:8080/cards';
+    this.backendUrl = 'http://localhost:8080';
+  }
+  
+  public signIn(pseudo: string) {
+	  return this.http.post<string>(this.backendUrl + '/signin', pseudo);
+  }
+  
+  public logIn(pseudo: string) {
+	  return this.http.post<string>(this.backendUrl + '/login', pseudo);
   }
 
-  public findAll(): Observable<Cards[]> {
-    return this.http.get<Cards[]>(this.cardsUrl);
+  public findAll(): Observable<Card[]> {
+    return this.http.get<Card[]>(this.backendUrl + '/cards');
   }
 
-  public save(card: Cards) {
-    return this.http.post<Cards>(this.cardsUrl, card);
+  public save(card: Card) {
+    return this.http.post<Card>(this.backendUrl + '/addcard', card);
+  }
+  
+  public findAllUserCards(userId: string): Observable<Card[]> {
+	let options = { params: new HttpParams().set('userId', userId) };
+    return this.http.get<[]>(this.backendUrl + '/usercards', options);
+  }
+
+  public saveUserCard(userId: string, card: Card, numberCard: number) {
+    return this.http.post(this.backendUrl + '/addusercard', {'userId': userId, 'card': card, 'number': numberCard});
   }
 }
