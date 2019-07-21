@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card';
 import { CardsService } from '../cards.service';
+import { hasUser, getUser } from '../authent.utils';
 
 @Component({
   selector: 'app-cards-list',
@@ -11,12 +12,16 @@ export class CardsListComponent implements OnInit {
 
   cards: Card[];
 
-  constructor(private cardsService: CardsService) { }
+  hasUser;
+
+  constructor(private cardsService: CardsService) { 
+	  this.hasUser = hasUser;
+  }
 
   ngOnInit() {
 	  
-	  if(this.asUser()) {
-		  this.cardsService.findAllUserCards(this.getUser().id.toString()).subscribe(data => {
+	  if(hasUser()) {
+		  this.cardsService.findAllUserCards(getUser().id.toString()).subscribe(data => {
 		      this.cards = data.map(dict => {
 		    	  let card = dict["card"];
 		    	  card.number = dict["own.number"];
@@ -28,14 +33,6 @@ export class CardsListComponent implements OnInit {
 		      this.cards = data;
 		    });
 	  }
-  }
-  
-  asUser() {
-	  return sessionStorage && sessionStorage.getItem('mtgUser');
-  }
-  
-  getUser() {
-	  return JSON.parse(sessionStorage.getItem('mtgUser'));
   }
 
 }

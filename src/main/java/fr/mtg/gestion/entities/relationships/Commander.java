@@ -11,7 +11,7 @@ import fr.mtg.gestion.entities.nodes.Deck;
 
 @RelationshipEntity(type = "COMMANDER")
 public class Commander {
-	
+
 	@Id @GeneratedValue private Long id;
 	
 	@StartNode
@@ -19,5 +19,10 @@ public class Commander {
 	
 	@EndNode
 	private Card card;
+	
+	public Commander(Deck deck, Card card) {
+		this.deck = deck;
+		this.card = card;
+	}
 
 }

@@ -19,5 +19,10 @@ public class UseDeck {
 	
 	@EndNode
 	private Deck deck;
+	
+	public UseDeck(User user, Deck deck) {
+		this.user = user;
+		this.deck = deck;
+	}
 
 }

@@ -23,11 +23,11 @@ export class UserFormComponent {
   }
   
   logIn() {
-	    this.cardsService.logIn(this.pseudo).subscribe(result => {
-	    	sessionStorage.setItem("mtgUser", JSON.stringify(result));
-	    	this.gotoHome();
-	    });
-	  }
+    this.cardsService.logIn(this.pseudo).subscribe(result => {
+    	sessionStorage.setItem("mtgUser", JSON.stringify(result));
+    	this.gotoHome();
+    });
+  }
  
   gotoHome() {
     this.router.navigate(['/']);

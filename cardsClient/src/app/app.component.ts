@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { hasUser, getUser } from './authent.utils';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +9,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent {
   title: string;
+  hasUser;
+  getUser;
 
   constructor(private router: Router){
     this.title = 'titleFromConstructor'
-  }
-  
-  asUser(){
-	  return sessionStorage && sessionStorage.getItem('mtgUser');
-  }
-  
-  getUser(){
-	  return JSON.parse(sessionStorage.getItem('mtgUser'));
+    this.hasUser = hasUser;
+    this.getUser = getUser;
   }
   
   logOut(){

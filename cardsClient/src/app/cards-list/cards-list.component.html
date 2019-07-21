@@ -15,7 +15,7 @@
             <th scope="col">Power</th>
             <th scope="col">Toughness</th>
             <th scope="col">Colors</th>
-            <th *ngIf="asUser()" scope="col">Number</th>
+            <th *ngIf="hasUser()" scope="col">Number</th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@
             <td>{{ card.power }}</td>
             <td>{{ card.toughness }}</td>
             <td>{{ card.colors }}</td>
-            <td *ngIf="asUser()">{{ card.number }}</td>
+            <td *ngIf="hasUser()">{{ card.number }}</td>
           </tr>
         </tbody>
       </table>

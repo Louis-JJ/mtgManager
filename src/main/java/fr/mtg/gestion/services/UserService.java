@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.mtg.gestion.entities.nodes.User;
 import fr.mtg.gestion.exceptions.AuthentificationException;
-import fr.mtg.gestion.repositories.UserRepository;
+import fr.mtg.gestion.repositories.nodes.UserRepository;
 
 @Service
 public class UserService {

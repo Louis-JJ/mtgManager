@@ -6,6 +6,8 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import fr.mtg.gestion.entities.nodes.Card;
 import fr.mtg.gestion.entities.nodes.User;
 
@@ -41,6 +43,7 @@ public class OwnCard {
 		this.number = number;
 	}
 
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}

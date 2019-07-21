@@ -11,14 +11,30 @@ import fr.mtg.gestion.entities.nodes.Deck;
 
 @RelationshipEntity(type = "CONTAIN")
 public class Contain {
+
+	@Id @GeneratedValue 
+	private Long id;
 	
-	@Id @GeneratedValue private Long id;
-	private byte number;
+	private Long number;
 	
 	@StartNode
 	private Deck deck;
 	
 	@EndNode
 	private Card card;
+	
+	public Contain(Card card, Long number, Deck deck) {
+		this.card = card;
+		this.number = number;
+		this.deck = deck;
+	}
+
+	public Long getNumber() {
+		return number;
+	}
+
+	public void setNumber(Long number) {
+		this.number = number;
+	}
 
 }

@@ -1,15 +1,8 @@
 package fr.mtg.gestion.entities.nodes;
 
-
-
-import java.util.List;
-
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
-
-import fr.mtg.gestion.entities.relationships.OwnCard;
 
 @NodeEntity
 public class Card {
@@ -29,9 +22,6 @@ public class Card {
 	private String power;
 	private String toughness;
 	private String colors;
-	
-	@Relationship(type = "OWN", direction = Relationship.INCOMING)
-	   private List<OwnCard> ownBy;
 
 	public Long getId() {
 		return id;
@@ -82,6 +72,6 @@ public class Card {
 	}
 	
 	public String toString() {
-		return "Card [ id : "+this.id+", name : "+this.nameFr +" ]";
+		return "Card [ id : " + this.id + ", name : " + this.nameFr + " ]";
 	}
 }

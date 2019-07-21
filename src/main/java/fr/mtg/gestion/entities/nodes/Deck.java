@@ -28,4 +28,24 @@ public class Deck {
 	@Relationship(type = "COMMANDER")
 	private List<Commander> commander;
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getColors() {
+		return colors;
+	}
+
+	public List<Contain> getCards() {
+		return cards;
+	}
+
+	public List<Commander> getCommander() {
+		return commander;
+	}
+
 }

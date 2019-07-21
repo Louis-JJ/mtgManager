@@ -1,4 +1,4 @@
-package fr.mtg.gestion.repositories;
+package fr.mtg.gestion.repositories.nodes;
 
 import java.util.Collection;
 

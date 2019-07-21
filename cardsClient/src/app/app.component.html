@@ -4,15 +4,18 @@
       <div class="card bg-dark my-5">
         <div class="card-body">
           <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
-          <div *ngIf="asUser()" class="text-center text-white">Logged as {{ getUser().pseudo }}</div>
+          <div *ngIf="hasUser()" class="text-center text-white">Logged as {{ getUser().pseudo }}</div>
           <ul class="text-center list-inline py-3">
           	
           	
-          	<li *ngIf="!asUser()" class="list-inline-item"><a routerLink="/auth" class="btn btn-info">Authenticate</a></li>
-            <li *ngIf="asUser()" class="list-inline-item"><a class="btn btn-info text-white" (click)="logOut()">Log Out</a></li>
+          	<li *ngIf="!hasUser()" class="list-inline-item"><a routerLink="/auth" class="btn btn-info">Authenticate</a></li>
+            <li *ngIf="hasUser()" class="list-inline-item"><a class="btn btn-info text-white" (click)="logOut()">Log Out</a></li>
             
             <li class="list-inline-item"><a routerLink="/cards" class="btn btn-info">List Cards</a></li>
             <li class="list-inline-item"><a routerLink="/addcard" class="btn btn-info">Add Cards</a></li>
+            
+            <li *ngIf="hasUser()" class="list-inline-item"><a routerLink="/adddeck" class="btn btn-info">Add Deck</a></li>
+            <li *ngIf="hasUser()" class="list-inline-item"><a routerLink="/editdeck" class="btn btn-info">Edit Deck</a></li>
           </ul>
         </div>
       </div>
