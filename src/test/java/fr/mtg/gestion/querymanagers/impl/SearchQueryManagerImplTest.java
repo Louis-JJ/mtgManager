@@ -8,22 +8,22 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.mtg.gestion.querymanagers.impl.SearchQueryManagerImpl;
+import fr.mtg.gestion.queryhandlers.impl.SearchQueryHandlerImpl;
 
 public class SearchQueryManagerImplTest {
 	
-	private SearchQueryManagerImpl searchQueryManagerImpl;
+	private SearchQueryHandlerImpl searchQueryManagerImpl;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.searchQueryManagerImpl = new SearchQueryManagerImpl();
+		this.searchQueryManagerImpl = new SearchQueryHandlerImpl();
 	}
 
 	/**
-	 * Test method for {@link fr.mtg.gestion.querymanagers.impl.SearchQueryManagerImpl#validTextSearch(java.lang.String, java.lang.String)}.
+	 * Test method for {@link fr.mtg.gestion.queryhandlers.impl.SearchQueryHandlerImpl#validTextSearch(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public final void testValidTextSearch() {

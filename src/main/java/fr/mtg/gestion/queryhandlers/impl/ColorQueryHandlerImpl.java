@@ -1,12 +1,12 @@
-package fr.mtg.gestion.querymanagers.impl;
+package fr.mtg.gestion.queryhandlers.impl;
 
 
 import org.springframework.stereotype.Service;
 
-import fr.mtg.gestion.querymanagers.ColorQueryManager;
+import fr.mtg.gestion.queryhandlers.ColorQueryHandler;
 
 @Service
-public class ColorQueryManagerImpl implements ColorQueryManager {
+public class ColorQueryHandlerImpl implements ColorQueryHandler {
 
 	/**
 	 * {@inheritDoc}

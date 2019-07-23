@@ -8,22 +8,22 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.mtg.gestion.querymanagers.impl.ColorQueryManagerImpl;
+import fr.mtg.gestion.queryhandlers.impl.ColorQueryHandlerImpl;
 
 public class ColorQueryManagerImplTest {
 	
-	private ColorQueryManagerImpl colorQueryManagerImpl;
+	private ColorQueryHandlerImpl colorQueryManagerImpl;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.colorQueryManagerImpl = new ColorQueryManagerImpl();
+		this.colorQueryManagerImpl = new ColorQueryHandlerImpl();
 	}
 	
 	/**
-	 * Test method for {@link fr.mtg.gestion.querymanagers.impl.ColorQueryManagerImpl#validColorPattern(java.lang.String)}.
+	 * Test method for {@link fr.mtg.gestion.queryhandlers.impl.ColorQueryHandlerImpl#validColorPattern(java.lang.String)}.
 	 */
 	@Test
 	public final void testValidColorPattern() {
@@ -53,7 +53,7 @@ public class ColorQueryManagerImplTest {
 	}
 
 	/**
-	 * Test method for {@link fr.mtg.gestion.querymanagers.impl.ColorQueryManagerImpl#colorsToRegex(java.lang.String)}.
+	 * Test method for {@link fr.mtg.gestion.queryhandlers.impl.ColorQueryHandlerImpl#colorsToRegex(java.lang.String)}.
 	 */
 	@Test
 	public final void testColorsToRegex() {

@@ -1,11 +1,11 @@
-package fr.mtg.gestion.querymanagers.impl;
+package fr.mtg.gestion.queryhandlers.impl;
 
 import org.springframework.stereotype.Service;
 
-import fr.mtg.gestion.querymanagers.SearchQueryManager;
+import fr.mtg.gestion.queryhandlers.SearchQueryHandler;
 
 @Service
-public class SearchQueryManagerImpl implements SearchQueryManager{
+public class SearchQueryHandlerImpl implements SearchQueryHandler{
 	
 	/**
 	 * {@inheritDoc}

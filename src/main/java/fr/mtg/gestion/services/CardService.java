@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.mtg.gestion.entities.nodes.Card;
 import fr.mtg.gestion.entities.relationships.Contain;
 import fr.mtg.gestion.entities.relationships.OwnCard;
-import fr.mtg.gestion.querymanagers.ColorQueryManager;
-import fr.mtg.gestion.querymanagers.SearchQueryManager;
+import fr.mtg.gestion.queryhandlers.ColorQueryHandler;
+import fr.mtg.gestion.queryhandlers.SearchQueryHandler;
 import fr.mtg.gestion.repositories.nodes.CardRepository;
 import fr.mtg.gestion.repositories.nodes.UserRepository;
 import fr.mtg.gestion.repositories.relationships.OwnershipRepository;
@@ -35,23 +35,23 @@ public class CardService {
 	/**  <b>OWN</b> Relationship repository **/
 	public final OwnershipRepository ownershipRepository;
 	
-	/** Searching card by field Manager **/
-	public final SearchQueryManager searchQueryManager;
-	/** Searching card by color Manager **/
-	public final ColorQueryManager colorQueryManager;
+	/** Searching card by field Handler **/
+	public final SearchQueryHandler searchQueryHandler;
+	/** Searching card by color Handler **/
+	public final ColorQueryHandler colorQueryHandler;
 	
 	public CardService(
 			UserRepository userRepository,
 			CardRepository cardRepository,  
 			OwnershipRepository ownershipRepository, 
-			SearchQueryManager searchQueryConverter, 
-			ColorQueryManager colorQueryConverter
+			SearchQueryHandler SearchQueryHandler, 
+			ColorQueryHandler ColorQueryHandler
 			) {
 		this.userRepository = userRepository;
 		this.cardRepository = cardRepository;;
 		this.ownershipRepository = ownershipRepository;
-		this.searchQueryManager = searchQueryConverter;
-		this.colorQueryManager = colorQueryConverter;
+		this.searchQueryHandler = SearchQueryHandler;
+		this.colorQueryHandler = ColorQueryHandler;
 	}
 	
 	private Card addCardIfDoesntExist(Card card) {
@@ -88,11 +88,11 @@ public class CardService {
 	
 	@Transactional
 	public List<Map<String,Object>> findUserCardWithColors(Long userId, String searchType, String searchText, String colors) {
-		if(searchQueryManager.validTextSearch(searchType, searchText) && colorQueryManager.validColorPattern(colors)) {
+		if(searchQueryHandler.validTextSearch(searchType, searchText) && colorQueryHandler.validColorPattern(colors)) {
 			switch(searchType) {
-			case "mtgId": return cardRepository.getUserCardByMtgIdAndColors(userId, searchText, colorQueryManager.colorsToRegex(colors));
-			case "nameFr": return cardRepository.getUserCardByNameFrAndColors(userId, searchText, colorQueryManager.colorsToRegex(colors));
-			case "nameEn": return cardRepository.getUserCardByNameEnAndColors(userId, searchText, colorQueryManager.colorsToRegex(colors));
+			case "mtgId": return cardRepository.getUserCardByMtgIdAndColors(userId, searchText, colorQueryHandler.colorsToRegex(colors));
+			case "nameFr": return cardRepository.getUserCardByNameFrAndColors(userId, searchText, colorQueryHandler.colorsToRegex(colors));
+			case "nameEn": return cardRepository.getUserCardByNameEnAndColors(userId, searchText, colorQueryHandler.colorsToRegex(colors));
 			}
 		} throw new InvalidParameterException("Invalid parameters to build queries : [TYPE] " + searchType + " [SEARCH] " + searchText + " [COLORS] " + colors);
 	}

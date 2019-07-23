@@ -1,11 +1,11 @@
-package fr.mtg.gestion.querymanagers;
+package fr.mtg.gestion.queryhandlers;
 
 /**
- * Manager to handle card's search by specific fields
+ * Handler for card's search by specific fields
  * @author redSpoutnik
  *
  */
-public interface SearchQueryManager {
+public interface SearchQueryHandler {
 	
 	/**
 	 * Check if <b>searchText</b> is valid for corresponding <b>searchType</b>.

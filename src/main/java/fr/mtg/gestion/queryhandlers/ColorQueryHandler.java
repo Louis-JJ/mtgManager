@@ -1,11 +1,11 @@
-package fr.mtg.gestion.querymanagers;
+package fr.mtg.gestion.queryhandlers;
 
 /**
- * Manager to handle colors string's patterns
+ * Handler for colors string's patterns
  * @author redSpoutnik
  *
  */
-public interface ColorQueryManager {
+public interface ColorQueryHandler {
 	
 	/**
 	 * Valid colors string's pattern for further treatments.</br>
