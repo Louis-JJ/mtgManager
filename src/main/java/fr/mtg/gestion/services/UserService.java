@@ -10,13 +10,14 @@ import fr.mtg.gestion.exceptions.AuthenticationException;
 import fr.mtg.gestion.repositories.nodes.UserRepository;
 
 /**
- * TODO
+ * Service class to perform user's authentication and personal informations updates.
  * @author redSpoutnik
  *
  */
 @Service
 public class UserService {
 	
+	/**  <b>User /<b> Node repository **/
 	public final UserRepository userRepository;
 	
 	public UserService(UserRepository userRepository) {

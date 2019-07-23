@@ -20,15 +20,26 @@ import fr.mtg.gestion.repositories.relationships.UsingDeckRepository;
 import fr.mtg.gestion.services.utils.SavingUtils;
 import fr.mtg.gestion.services.utils.UserUtils;
 
+/**
+ * Service class to perform deck's related operations.
+ * @author redSpoutnik
+ *
+ */
 @Service
 public class DeckService {
 	
+	/** <b>User</b> Node repository **/
 	public final UserRepository userRepository;
+	/**  <b>Card</b> Node repository **/
 	public final CardRepository cardRepository;
+	/**  <b>Deck</b> Node repository **/
 	public final DeckRepository deckRepository;
 	
+	/**  <b>USE</b> Relationship repository **/
 	public final UsingDeckRepository usingDeckRepository;
+	/**  <b>CONTAIN</b> Relationship repository **/
 	public final ContainRepository containRepository;
+	/**  <b>COMMANDER</b> Relationship repository **/
 	public final CommanderRepository commanderRepository;
 	
 	public DeckService(

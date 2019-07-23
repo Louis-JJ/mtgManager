@@ -24,6 +24,11 @@ import fr.mtg.gestion.services.CardService;
 import fr.mtg.gestion.services.DeckService;
 import fr.mtg.gestion.services.UserService;
 
+/**
+ * 
+ * Main rest API controller :</br> Contain mapping for every rest -> service call.
+ *
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class RestCtrl {

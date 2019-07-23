@@ -7,6 +7,9 @@ import fr.mtg.gestion.querymanagers.SearchQueryManager;
 @Service
 public class SearchQueryManagerImpl implements SearchQueryManager{
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean validTextSearch(String searchType, String searchText) {
 		switch(searchType) {

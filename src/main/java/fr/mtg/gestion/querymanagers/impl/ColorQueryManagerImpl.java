@@ -8,11 +8,17 @@ import fr.mtg.gestion.querymanagers.ColorQueryManager;
 @Service
 public class ColorQueryManagerImpl implements ColorQueryManager {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean validColorPattern(String colors) {
 		return colors.matches("\\{\\}|(\\{[RGUWB]\\})+");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String colorsToRegex(String colors) {
 		StringBuilder builder = new StringBuilder("(\\{");

@@ -19,15 +19,25 @@ import fr.mtg.gestion.repositories.relationships.OwnershipRepository;
 import fr.mtg.gestion.services.utils.SavingUtils;
 import fr.mtg.gestion.services.utils.UserUtils;
 
+/**
+ * Service class to perform card's related operations.
+ * @author redSpoutnik
+ *
+ */
 @Service
 public class CardService {
 	
+	/**  <b>User</b> Node repository **/
 	public final UserRepository userRepository;
+	/**  <b>Card</b> Node repository **/
 	public final CardRepository cardRepository;
 	
+	/**  <b>OWN</b> Relationship repository **/
 	public final OwnershipRepository ownershipRepository;
 	
+	/** Searching card by field Manager **/
 	public final SearchQueryManager searchQueryManager;
+	/** Searching card by color Manager **/
 	public final ColorQueryManager colorQueryManager;
 	
 	public CardService(

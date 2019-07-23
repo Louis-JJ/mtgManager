@@ -3,6 +3,11 @@ package fr.mtg.gestion.entities.requests;
 import fr.mtg.gestion.entities.nodes.Card;
 import fr.mtg.gestion.entities.nodes.Deck;
 
+/**
+ * 
+ * Request object to map parameters in " <b>adding card to deck</b> " operations.
+ *
+ */
 public class CardDeckRequest {
 	
 	private Card card;

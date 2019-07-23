@@ -2,6 +2,11 @@ package fr.mtg.gestion.entities.requests;
 
 import fr.mtg.gestion.entities.nodes.Card;
 
+/**
+ * 
+ * Request object to map parameters in " <b>adding card to user's collection</b> " operations.
+ *
+ */
 public class UserCardRequest {
 	
 	private long userId;

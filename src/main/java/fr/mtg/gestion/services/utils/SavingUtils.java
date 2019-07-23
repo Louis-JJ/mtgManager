@@ -5,6 +5,12 @@ import java.util.function.Supplier;
 
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 
+/**
+ * Utility class for " <b>save if doesn't exist, else update</b> " strategy.
+ * 
+ * @author redSpoutnik
+ *
+ */
 public final class SavingUtils {
 	
 	private SavingUtils() {
