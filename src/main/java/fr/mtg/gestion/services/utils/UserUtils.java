@@ -1,11 +1,17 @@
 package fr.mtg.gestion.services.utils;
 
-import java.security.InvalidParameterException;
 import java.util.Optional;
 
 import fr.mtg.gestion.entities.nodes.User;
+import fr.mtg.gestion.exceptions.InvalidUserException;
 import fr.mtg.gestion.repositories.nodes.UserRepository;
 
+/**
+ * Utility class to retrieve User or throw exception.
+ * 
+ * @author redSpoutnik
+ *
+ */
 public final class UserUtils {
 	
 	private UserUtils() {
@@ -17,7 +23,7 @@ public final class UserUtils {
 			if(user.isPresent()) {
 				return user.get();
 			}
-		} throw new InvalidParameterException("Invalid user id : " + id);
+		} throw new InvalidUserException(id);
 	}
 
 }
