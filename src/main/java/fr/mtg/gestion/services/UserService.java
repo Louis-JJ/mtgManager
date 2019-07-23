@@ -6,9 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.mtg.gestion.entities.nodes.User;
-import fr.mtg.gestion.exceptions.AuthentificationException;
+import fr.mtg.gestion.exceptions.AuthenticationException;
 import fr.mtg.gestion.repositories.nodes.UserRepository;
 
+/**
+ * TODO
+ * @author redSpoutnik
+ *
+ */
 @Service
 public class UserService {
 	
@@ -22,7 +27,7 @@ public class UserService {
 	public User signIn(String pseudo) {
 		List<User> matchingUser = (List<User>) userRepository.findByPseudo(pseudo);
 		if(!matchingUser.isEmpty()) {
-			throw new AuthentificationException("User with pseudo [" + pseudo + "] already exist.");
+			throw new AuthenticationException("User with pseudo [" + pseudo + "] already exist.");
 		} return userRepository.save(new User(pseudo));
 	}
 	
@@ -30,9 +35,9 @@ public class UserService {
 	public User logIn(String pseudo) {
 		List<User> matchingUsers = (List<User>) userRepository.findByPseudo(pseudo);
 		if(matchingUsers.isEmpty()) {
-			throw new AuthentificationException("No user [" + pseudo + "]");
+			throw new AuthenticationException("No user [" + pseudo + "]");
 		} else if(matchingUsers.size() > 1) {
-			throw new AuthentificationException("Multiple users for pseudo [" + pseudo + "]");
+			throw new AuthenticationException("Multiple users for pseudo [" + pseudo + "]");
 		} else {
 			return matchingUsers.get(0);
 		}
