@@ -1,0 +1,34 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Mana Cost</th>
+            <th scope="col">Type</th>
+            <th scope="col">Text</th>
+            <th scope="col">Rarity</th>
+            <th scope="col">Power</th>
+            <th scope="col">Toughness</th>
+            <th scope="col">Colors</th>
+            <th scope="col">Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let card of cards">
+            <td>{{ card.id }}</td>
+            <td>{{ card.name }}</td>
+            <td>{{ card.mana_cost }}</td>
+            <td>{{ card.type }}</td>
+            <td>{{ card.text }}</td>
+            <td>{{ card.rarity }}</td>
+            <td>{{ card.power }}</td>
+            <td>{{ card.toughness }}</td>
+            <td>{{ card.colors }}</td>
+            <td>{{ card.number }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
