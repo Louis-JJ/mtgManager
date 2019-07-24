@@ -1,0 +1,17 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form #userForm="ngForm">
+      
+        <div class="form-group">
+          <label for="pseudo">Pseudo</label>
+          <input type="text" [(ngModel)]="pseudo" 
+            class="form-control" id="pseudo" name="pseudo" placeholder="Enter your pseudo"
+            required #name="ngModel">
+        </div>
+        <div [hidden]="!name.pristine" class="alert alert-danger">Pseudo is required</div>
+        
+        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info" (click)="signIn()">Sign In</button>
+        <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info" (click)="logIn()">Log In</button>
+      </form>
+    </div>
+  </div>

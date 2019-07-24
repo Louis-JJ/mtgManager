@@ -4,29 +4,35 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Mana Cost</th>
+            <th scope="col">MTG Id</th>
+            <th scope="col">Name FR</th>
+            <th scope="col">Name EN</th>
+            <th scope="col">CMC</th>
+            <th scope="col">Extension</th>
             <th scope="col">Type</th>
-            <th scope="col">Text</th>
+            <th scope="col">Flavor Text</th>
             <th scope="col">Rarity</th>
             <th scope="col">Power</th>
             <th scope="col">Toughness</th>
             <th scope="col">Colors</th>
-            <th scope="col">Number</th>
+            <th *ngIf="hasUser()" scope="col">Number</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let card of cards">
             <td>{{ card.id }}</td>
-            <td>{{ card.name }}</td>
-            <td>{{ card.mana_cost }}</td>
+            <td>{{ card.mtgId }}</td>
+            <td>{{ card.nameFr }}</td>
+            <td>{{ card.nameEn }}</td>
+            <td>{{ card.cmc }}</td>
+            <td>{{ card.extension }}</td>
             <td>{{ card.type }}</td>
-            <td>{{ card.text }}</td>
+            <td>{{ card.flavorText }}</td>
             <td>{{ card.rarity }}</td>
             <td>{{ card.power }}</td>
             <td>{{ card.toughness }}</td>
             <td>{{ card.colors }}</td>
-            <td>{{ card.number }}</td>
+            <td *ngIf="hasUser()">{{ card.number }}</td>
           </tr>
         </tbody>
       </table>

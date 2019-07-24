@@ -1,0 +1,142 @@
+<div *ngIf="hasUser() && !hasDeck() && loadedDecks && loadedDecks.length > 0" class="card my-5">
+    <div class="card-body">
+      <div class="form-group">
+          <label>Load Deck</label>
+	      <form>
+		      <select [formControl]="loadDecksControl" [(ngModel)]="deck">
+			      <option *ngFor="let loadedDeck of loadedDecks" [(ngValue)]="loadedDeck">
+			      	{{ loadedDeck.name }}
+			      </option>
+		      </select>
+	      </form>
+	  </div>
+  </div>
+</div>  
+
+<div *ngIf="hasUser() && hasDeck()" class="card my-5">
+    <div class="card-body">
+    	<div class="form-group">
+	    	<div>Deck: {{ deck.name }}</div>
+	    	<div>Colors: {{ deck.colors }}</div>
+	    	<div>Number cards: {{ getDeckSize() }}</div>
+    	</div>
+    </div>
+</div>
+
+
+  
+  <div *ngIf="hasUser() && hasDeck() && candidateCard && candidateCardMaxNumber" class="card my-5">
+    <div class="card-body">
+       <form (ngSubmit)="onAdd()" #addCardToDeckForm="ngForm">
+      
+        <div class="form-group">
+          <label >Add Card to Deck</label>
+          <ul>
+	          <li>
+	          	<span class="badge">MTG Id</span> {{ candidateCard.mtgId }}
+	          </li>
+	          <li>
+	          	<span class="badge">Name FR</span> {{ candidateCard.nameFr }}
+	          </li>
+	          <li>
+	          	<span class="badge">Name EN</span> {{ candidateCard.nameEn }}
+	          </li>
+	          <li>
+	          	<span class="badge">CMC</span> {{ candidateCard.cmc }}
+	          </li>
+	          <li>
+	          	<span class="badge">Extension</span> {{ candidateCard.extension }}
+	          </li>
+	          <li>
+	          	<span class="badge">Type</span> {{ candidateCard.type }}
+	          </li>
+	          <li>
+	          	<span class="badge">Rarity</span> {{ candidateCard.rarity }}
+	          </li>
+	          <li>
+	          	<span class="badge">Power</span> {{ candidateCard.power }}
+	          </li>
+	          <li>
+	          	<span class="badge">Toughness</span> {{ candidateCard.toughness }}
+	          </li>
+	          <li>
+	          	<span class="badge">Colors</span> {{ candidateCard.colors }}
+	          </li>
+          </ul>
+        </div>
+        <div>
+        	<input type="number" name="quantity" min="1" max="{{ candidateCardMaxNumber }}" [(ngModel)]="candidateCardNumber" 
+	            class="form-control" id="number" name="number" placeholder=1
+	            required #name="ngModel">
+	        <input type="checkbox" [(ngModel)]="isCommander" id="is-commander" name="is-commander">is Commander Card
+        </div>            
+        <button type="submit" [disabled]="!addCardToDeckForm.form.valid" class="btn btn-info">Add to Deck</button>
+      </form>
+    </div>
+  </div>    
+  
+  <div *ngIf="hasUser() && hasDeck()" class="card my-5">
+    <div class="card-body">
+       <form (ngSubmit)="onSearch()" #searchValidDeckCardForm="ngForm">
+      
+        <div class="form-group">
+          <label for="search">Search Card in collection</label>
+          <input type="text" [(ngModel)]="searchText" 
+            class="form-control" id="search" name="search" placeholder="Enter card name or id"
+            required #search="ngModel">
+        </div>
+        <div [hidden]="!search.pristine" class="alert alert-danger">Field is required</div>
+        
+        <div class="form-group">
+        	<label>Search by</label>
+  			<input type="radio" name="searchType" value="mtgId" [(ngModel)]="searchType" checked> MTG Id
+  			<input type="radio" name="searchType" value="nameFr" [(ngModel)]="searchType"> Name FR
+  			<input type="radio" name="searchType" value="nameEn" [(ngModel)]="searchType"> Name EN
+		</div>
+        
+        <button type="submit" [disabled]="!searchValidDeckCardForm.form.valid" class="btn btn-info">Search</button>
+      </form>
+    </div>
+  </div>    
+  
+  <div *ngIf="hasUser() && hasDeck()" class="card my-5">
+    <div class="card-body">
+      <label>{{ deck.name }} Card List</label>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">MTG Id</th>
+            <th scope="col">Name FR</th>
+            <th scope="col">Name EN</th>
+            <th scope="col">CMC</th>
+            <th scope="col">Extension</th>
+            <th scope="col">Type</th>
+            <th scope="col">Flavor Text</th>
+            <th scope="col">Rarity</th>
+            <th scope="col">Power</th>
+            <th scope="col">Toughness</th>
+            <th scope="col">Colors</th>
+            <th *ngIf="hasUser()" scope="col">Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of deckCardsData">
+            <td>{{ data.card.id }}</td>
+            <td>{{ data.card.mtgId }}</td>
+            <td>{{ data.card.nameFr }}</td>
+            <td>{{ data.card.nameEn }}</td>
+            <td>{{ data.card.cmc }}</td>
+            <td>{{ data.card.extension }}</td>
+            <td>{{ data.card.type }}</td>
+            <td>{{ data.card.flavorText }}</td>
+            <td>{{ data.card.rarity }}</td>
+            <td>{{ data.card.power }}</td>
+            <td>{{ data.card.toughness }}</td>
+            <td>{{ data.card.colors }}</td>
+            <td><input type="number" name="quantity" min="0" max="{{ data['o.number'] }}" value="{{ data['c.number'] }}" ></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
